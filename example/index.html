@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  <title>list-section-build 示例</title>
+  <link rel="stylesheet" href="http://n2.static.pg0.cn/www/common/base/css/base.css"></link>
+  <link rel="stylesheet" href="http://n3.static.pg0.cn/fp/nav-scroll-switch/dist/nav-scroll-switch.css" />
+	<link type="text/css" rel="stylesheet" href="../dist/list-section-build.css">
+</head>
+
+<body>
+<div class="nav-con">
+  <div class="scroll-nav">
+      <ul >
+		<li class="activ" dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530555&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=10"><a href="http://m.banyuetan.org/index.html">今日谈</a></li>
+		<li dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530632&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=10"><a href="http://m.banyuetan.org/szjj/index.html">时政讲解</a></li>
+		<li dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530634&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=30"><a href="http://m.banyuetan.org/bytpl/index.html">半月谈评论</a></li>
+		<li dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530638&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=30"><a href="http://m.banyuetan.org/jczl/index.html">基层治理</a></li>
+		<li dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530640&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=30"><a href="http://m.banyuetan.org/wh/index.html">文化</a></li>
+		<li dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530657&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=30"><a href="http://m.banyuetan.org/jj/index.html">经济</a></li>
+		<li dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530642&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=30"><a href="http://m.banyuetan.org/jy/index.html">教育</a></li>
+		<li dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530658&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=30"><a href="http://m.banyuetan.org/zl/index.html">专栏</a></li>
+		<li dataurl="http://roll.banyuetan.org/newsQuery/query/getNewsList.htm?fields=&channel=&queryId=3618530660&pageNo=0&sourceType=0,1,2,3,4,5&IsRoll=0,1&tableName=news&date=&pageSize=30"><a href="http://m.banyuetan.org/rw/index.html">人物</a></li>
+      </ul>
+  </div>
+</div>
+<!--列表内容部分-->
+<div class="newsContent scrollwrapper">
+    <div id="newsList" class="news-list">
+   <div class="pic-roll">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+          <div class="swiper-slide">
+                 <a href>
+                         <img src="http://n5.cmsfile.pg0.cn/group2/M00/02/F6/CgoOEVre2eqACKr0AAFYhUk-rhU579.jpg?enable=&w=480&h=264&cut=">
+                           <span class="tit-bg"></span>
+                          <span>中国“芯”有多难</span>
+                 </a>
+          </div>
+          <div class="swiper-slide">
+                 <a href>
+                         <img src="http://n7.cmsfile.pg0.cn/group2/M00/02/F6/CgoOElre3IeAIlVHAACoicLdBm8315.jpg?enable=&w=480&h=264&cut=">
+                           <span class="tit-bg"></span>
+                          <span>中国“芯”有多难</span>
+                 </a>
+          </div>
+          <div class="swiper-slide">
+                 <a href>
+                         <img src="http://n1.cmsfile.pg0.cn/group4/M00/07/9B/CgoOFVreu0yAXQFsAAGXLAQrKaA823.jpg?enable=&w=480&h=264&cut=">
+                           <span class="tit-bg"></span>
+                          <span>中国“芯”有多难</span>
+                 </a>
+          </div>
+      </div>   
+      <div class="swiper-pagination"></div>
+      </div>
+    </div>
+ 
+    <!--模板渲染部分，放入插件中S-->
+    <template  v-for="(item,index) in itemList">
+      <template v-if="item.Images.length===0&&!item.PreviewImage">
+          <section class="has-image"  v-bind:index="index">
+              <a class="article-link clearfix" v-bind:href="item.WapUrl" v-bind:title="item.TitleCN">
+                  <div class="has-image-text">
+                      <h3 class="line2">{{item.TitleCN}}</h3>
+                      <p class="summary">{{item.Summary}}</p>
+                      <div class="item-info">
+                         <span class="label" v-if="item.Sign">{{item.Sign}}</span>
+                         <span class="source">{{item.SourceName}}</span>
+                         <span class="time" v-bind:data-time="item.PublishedAt"></span>
+                      </div>
+                  </div>
+              </a>
+          </section>
+      </template> 
+      <template v-if="item.Images.length<=2 && item.PreviewImage">
+          <section class="has-image"  v-bind:index="index">
+              <a class="article-link clearfix" v-bind:href="item.WapUrl" v-bind:title="item.TitleCN">
+                  <div class="list-img">
+                      <img v-bind:data-original="item.PreviewImage">
+                  </div>
+                  <div class="has-image-text">
+                      <h3 class="line2">{{item.TitleCN}}</h3>
+                      <div class="item-info">
+                                             <template v-if="item.Sign">
+                              <span class="label">{{item.Sign}}</span>
+                          </template>
+                          <template v-else-if="item.SyncType===3 ||item.Album.length > 0">
+                              <span class="label">图集</span>
+                          </template>
+                          <span class="source">{{item.SourceName}}</span>
+                         <span class="time" v-bind:data-time="item.PublishedAt"></span>
+                      </div>
+                  </div>
+              </a>
+          </section>
+      </template>
+      <template v-if="item.Images.length>2">
+          <section class="has-3images"  v-bind:index="index">
+               <a class="article-link clearfix" v-bind:href="item.WapUrl" v-bind:title="item.TitleCN">
+                  <h3 class="line3">{{item.TitleCN}}</h3>
+                  <div class="list-images">
+                      <div class="list-img"><img v-bind:data-original="item.Images[0]"></div>
+                      <div class="list-img"><img v-bind:data-original="item.Images[1]"></div>
+                      <div class="list-img"><img v-bind:data-original="item.Images[2]"></div>
+                  </div>
+                  <div class="item-info">
+                     <template v-if="item.Sign">
+                          <span class="label">{{item.Sign}}</span>
+                      </template>
+                      <template v-else-if="item.SyncType===3 ||item.Album.length > 0">
+                              <span class="label">图集</span>
+                      </template>
+                      <span class="source">{{item.SourceName}}</span>
+                      <span class="time" v-bind:data-time="item.PublishedAt"></span>
+                  </div>
+              </a>
+          </section>
+      </template>
+  </template>
+            <!--模板渲染部分，放入插件中E-->
+            <div class="pullup-wrapper">
+                <div class="refresh pullup-refresh" id="moreLoading" page="0" lastItemTime>
+                    <span class="pullup-refresh-icon"></span><span>正在加载</span>
+                </div>
+            </div>
+        </div>
+        <div class="pulldown-wrapper">
+            <div class="refresh pull-down-refresh" id="newLoading" firstitemtime="">
+                <span class="pulldown-refresh-icon"></span><span>正在请求新数据</span>
+            </div>
+        </div>
+    </div>
+	
+  <script src="http://n3.static.pg0.cn/fp/jquery/dist/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="http://n3.static.pg0.cn/fp/nav-scroll-switch/dist/nav-scroll-switch.js"></script>
+	<script type="text/javascript" src="../dist/list-section-build.js"></script>
+  <script>
+(function(){
+	var navscrollswitch = new NavScrollSwitch({
+		link : "outStation"
+	});	
+	navscrollswitch.init();
+	ListSectionBuild.init({
+		data : "li",
+		swiper : {
+			pagination: '.swiper-pagination',
+			paginationType : 'bullets',
+			loop : !0,
+			autoplay : 10000,
+			speed : 1000
+		},
+    imgCutUrl : {
+      "width":300,
+      "height":202
+    }
+	})
+})();
+  </script>
+</body>
+
+</html>
